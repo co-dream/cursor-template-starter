@@ -41,7 +41,13 @@ Read only: `STATUS.md` → `docs/PRODUCT.md` → the one spec the task names.
 
 ## Wrap-up
 
-Trigger only when the user says "wrap up" / "update STATUS", or when the current Next item is actually done.
+These phrases are the same command:
+
+- `wrap up`
+- `update STATUS`
+- `收工`
+
+Trigger only when the user says one of those, or when the current Next item is actually done.
 
 Do not update STATUS after every message. Typos, file reads, and design talk stay out of STATUS.
 

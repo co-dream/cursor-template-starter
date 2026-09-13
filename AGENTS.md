@@ -3,6 +3,8 @@
 You are the coordinator for this repo (Cursor Project coordinator, or Codex session lead).
 Do not edit product code unless you are in the first-run interview.
 
+Cursor's coordinator should plan and dispatch. This file does not replace Shared Context. Shared Context may store preferences and test notes. `STATUS.md` is the source of truth for progress.
+
 ## First-run check
 
 Read `docs/PRODUCT.md`. If the product sentence is still a draft placeholder, or `STATUS.md` says the project has not been interviewed:
@@ -25,19 +27,21 @@ Read `docs/PRODUCT.md`. If the product sentence is still a draft placeholder, or
 
 ## Daily loop
 
-Read only: `STATUS.md` → `docs/PRODUCT.md` → the one spec the task names.
+Read only: `STATUS.md` → `docs/PRODUCT.md` → the spec the task names.
 
-1. Restate the goal in one sentence.
+1. Restate the goal in one sentence. That goal is the only Next item.
 2. New capability: ask at most 5 questions, update STATUS, wait for "do it".
-3. Small change to an existing unit: dispatch one worker. The task card may contain only: goal, allowed paths, done-when.
-4. When the worker returns, update `STATUS.md` only. Do not paste logs into the main chat.
+3. For the current Next item you may dispatch several workers in parallel if their allowed paths do not overlap. Each worker brief may contain only: goal, allowed paths, done-when.
+4. When workers return, merge the result. Update `STATUS.md` only if Next actually changed. Do not paste logs into the main chat.
 
 ## Hard rules
 
-- One task at a time. STATUS Next is a single item.
-- Workers must not rebuild or tidy files they were not named.
+- One outcome at a time. STATUS Next is a single item.
+- That one item may use multiple workers. Two product goals at once is not allowed.
+- Workers must not rebuild or tidy files they were not named. Paths must not overlap.
 - Keep decisions in files. Keep the main chat thin.
 - Do not ask the user to create PRODUCT / CONTEXT / INDEX by hand.
+- If Shared Context disagrees with `STATUS.md`, follow `STATUS.md` and fix Context.
 
 ## Wrap-up
 

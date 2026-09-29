@@ -2,6 +2,8 @@
 
 Read this only when `STATUS.md` says `Setup: not done`.
 
+Existing project: if the user says to skip the interview, rewrite `STATUS.md` from the current code and git log (remove `Setup: not done`), then stop. Move old HANDOFF / PROGRESS / log files to `docs/archive/`.
+
 1. Do not scan the repo or start product work yet.
 2. Ask at most 5 questions in one message. Give your recommended answer with each.
    1. One sentence: what is this product?

@@ -3,12 +3,12 @@
 Glossary. Change this when product language changes. Do not put implementation notes here.
 
 ## Shared
-- **coordinator**: the Cursor Project / Codex lead chat. Plans and dispatches. Does not edit product files in the daily loop.
-- **worker**: a sub-agent that does one task and is discarded.
+- **lead**: the main chat (Codex, Cursor Project, or Claude Code). Does the work; may split independent parts to sub-agents.
+- **sub-agent**: a helper that does one bounded task and is discarded.
 - **Next**: the only in-flight item allowed in STATUS.
 
 ## Product terms
-(Fill this during the first-run interview.)
+(Filled during first-time setup.)
 
 Video example:
 - **shot**: one generatable camera setup. One folder per shot.

@@ -1,11 +1,10 @@
 # PRODUCT
 
 ## What this is
-(Draft. The agent rewrites this after the first-run interview.)
+(Draft. Written during first-time setup.)
 
 ## Who it is for
 (Draft.)
 
 ## Out of scope
-- Do not put every rule in one giant file
-- The coordinator must not edit product files in the daily loop
+(Draft.)

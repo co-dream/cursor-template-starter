@@ -1,67 +1,39 @@
 # Agent rules
 
-You are the coordinator for this repo (Cursor Project coordinator, or Codex session lead).
-Do not edit product code unless you are in the first-run interview.
+Works in Codex, Cursor Projects, and Claude Code. `STATUS.md` is the only source of truth for progress.
 
-Cursor's coordinator should plan and dispatch. This file does not replace Shared Context. Shared Context may store preferences and test notes. `STATUS.md` is the source of truth for progress.
+## Start of session
 
-## First-run check
+1. Read `STATUS.md`.
+2. If it says `Setup: not done`, follow `docs/SETUP.md` instead of the rules below.
+3. Otherwise work on the Next item. Read `docs/PRODUCT.md`, `CONTEXT.md`, or a spec only when the task needs it.
 
-Read `docs/PRODUCT.md`. If the product sentence is still a draft placeholder, or `STATUS.md` says the project has not been interviewed:
+## Working
 
-1. Do not dispatch workers.
-2. Do not scan the whole repo.
-3. Ask at most 5 questions. Each question includes your recommended answer.
-   1. One sentence: what is this product?
-   2. Who is it for?
-   3. What is explicitly out of scope?
-   4. What is the smallest unit of change? (one shot / one module / one document / one checkout step)
-   5. What is the first feature to ship?
-4. After the user answers (or says "use your recommendations"), write these files once:
-   - `docs/PRODUCT.md`
-   - `CONTEXT.md` (glossary only)
-   - `specs/INDEX.md`
-   - empty folders only for named modules
-   - `STATUS.md` with exactly one Next item
-5. Stop. Recap in three lines. Wait for "start" before dispatching work.
+- Do the work yourself. Use parallel sub-agents only when the parts are independent and large enough to pay for the extra context. Each brief: goal, allowed paths, done-when. Paths must not overlap.
+- Read the code the task touches. Widen only when dependencies or tests require it. Do not survey the whole repo.
+- Ask only when missing information would change the result or scope, or when the action needs permission (destructive, publishing, spending). Otherwise proceed, verify, and report.
+- One product goal at a time. A new goal replaces Next; it does not run beside it.
+- Do not tidy or rewrite files the task did not name.
+- Keep decisions in `docs/` and `specs/`, not in chat.
+- In Cursor: if Shared Context disagrees with `STATUS.md`, follow `STATUS.md` and fix Shared Context.
 
-## Daily loop
+## Progress files
 
-Read only: `STATUS.md` → `docs/PRODUCT.md` → the spec the task names.
-
-1. Restate the goal in one sentence. That goal is the only Next item.
-2. New capability: ask at most 5 questions, update STATUS, wait for "do it".
-3. For the current Next item you may dispatch several workers in parallel if their allowed paths do not overlap. Each worker brief may contain only: goal, allowed paths, done-when.
-4. When workers return, merge the result. Update `STATUS.md` only if Next actually changed. Do not paste logs into the main chat.
-
-## Hard rules
-
-- One outcome at a time. STATUS Next is a single item.
-- That one item may use multiple workers. Two product goals at once is not allowed.
-- Workers must not rebuild or tidy files they were not named. Paths must not overlap.
-- Keep decisions in files. Keep the main chat thin.
-- Do not ask the user to create PRODUCT / CONTEXT / INDEX by hand.
-- If Shared Context disagrees with `STATUS.md`, follow `STATUS.md` and fix Context.
+- `STATUS.md` is the only progress file. Do not create HANDOFF, PROGRESS, LOG, or similar files.
+- Overwrite STATUS; never append. Keep it under one page.
+- History, test output, and evidence go in commit messages and PR descriptions, not in markdown files.
 
 ## Wrap-up
 
-These phrases are the same command:
+`wrap up`, `update STATUS`, and `收工` are the same command. Also run it when Next is done. Do not update STATUS after every message.
 
-- `wrap up`
-- `update STATUS`
-- `收工`
-
-Trigger only when the user says one of those, or when the current Next item is actually done.
-
-Do not update STATUS after every message. Typos, file reads, and design talk stay out of STATUS.
-
-Rewrite these fields only:
+Rewrite only these fields:
 
 1. Updated: today's date
 2. Now: three lines or fewer
-3. Done: check off finished capabilities (one line each)
-4. In progress: clear it if finished
-5. Next: exactly one item, or "waiting for the user"
-6. Do not repeat: add a pitfall only if this session hit a new one
+3. Done: one line per finished capability; keep the latest 10, older ones live in git
+4. Next: exactly one item, or "waiting for the user"
+5. Do not repeat: add a pitfall only if this session hit a new one
 
-Never dump chat summaries, logs, or full specs into STATUS. Show the user the five fields after you edit.
+Then tell the user the new Next in one line.

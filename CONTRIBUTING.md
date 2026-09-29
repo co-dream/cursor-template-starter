@@ -12,4 +12,4 @@ Pull requests:
 - Keep `AGENTS.md` short
 - Keep `STATUS.md` to one page
 - Do not add a second progress file
-- Manuals live in `info/`. Do not translate the operating files; those stay English.
+- Guides live in `README.md`. Do not translate the operating files; those stay English.

@@ -19,7 +19,7 @@ The daily flow does not change if the product is a video OS, an ERP, or a shop. 
 ## Daily
 
 - `Change checkout shipping. Touch only checkout.`
-- `wrap up` — update STATUS only. Do not edit other files.
+- `wrap up` — rewrites STATUS and commits locally (no push).
 
 Tiny edits do not belong in STATUS.
 

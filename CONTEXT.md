@@ -10,7 +10,7 @@ Glossary. Change this when product language changes. Do not put implementation n
 ## Product terms
 (Filled during first-time setup.)
 
-Video example:
+Video example (replaced during setup):
 - **shot**: one generatable camera setup. One folder per shot.
 - **take**: one generation of that shot. Append only.
 - **bible**: stable character / location / style notes. Shots reference it; they do not copy it.

@@ -1,8 +1,8 @@
 # cursor-template-starter
 
-A thin starter for [Cursor Projects](https://cursor.com), [Codex](https://developers.openai.com/codex/guides/agents-md), and [Claude Code](https://claude.com/claude-code).
+A thin starter for [Codex](https://developers.openai.com/codex/guides/agents-md), [Cursor Projects](https://cursor.com), and [Claude Code](https://claude.com/claude-code).
 
-Chats forget. Progress lives in `STATUS.md`. This is an operating contract, not a product.
+Chats forget. Progress lives in one page: `STATUS.md`. This is an operating contract, not a product.
 
 [English](#english) · [繁體中文](#traditional-chinese) · [简体中文](#simplified-chinese) · [日本語](#japanese)
 
@@ -13,43 +13,55 @@ Chats forget. Progress lives in `STATUS.md`. This is an operating contract, not 
 
 ### Why this exists
 
-Cursor Project gives you a long-running coordinator, but a new chat still forgets. This repo exists so starting and wrapping up stay simple:
+Every new chat with a coding agent starts from zero. People fix this by pasting old chats or keeping long handoff logs, and both burn tokens and confuse the agent. This template keeps it simple:
 
-- Start: say one sentence. The agent interviews you and writes the map files.
+- Start: say one sentence. The agent interviews you, writes the map files, and starts building.
 - Work: say only the next task.
 - Wrap up: say `wrap up` or `收工`. Only `STATUS.md` changes.
 
-You should not rebuild the directory, paste old chats, or scan the whole repo just to resume.
+### Start a new project
 
-### How it works
-
-1. Use this template.
-2. Open the new repo in Codex, Cursor Project, or Claude Code.
+1. Click **Use this template** on GitHub to create your repo (or clone it).
+2. Open the repo in Codex, Cursor Project, or Claude Code.
 3. Say: `This is a new project. Interview me first.`
-4. Answer up to 5 questions. The agent writes `docs/PRODUCT.md`, `CONTEXT.md`, `specs/INDEX.md`, and `STATUS.md`.
-5. The agent starts the first feature. After that, say only the next task.
-6. Before you leave: `wrap up` / `收工` — that updates `STATUS.md` only.
+4. Answer up to 5 questions, or say `use your recommendations`.
+5. The agent writes `docs/PRODUCT.md`, `CONTEXT.md`, `specs/INDEX.md`, and `STATUS.md`, then starts the first feature.
 
-A new session reads `AGENTS.md` and `STATUS.md`, then only what the Next item needs. Do not paste old chats. Do not scan the whole repo.
+### Add it to an existing project
 
-`STATUS.md` is the only progress file. It is overwritten, never appended. History and test evidence live in git commits and PRs.
+1. Copy `AGENTS.md`, `CLAUDE.md`, and `STATUS.md` into your repo root. If you already have an `AGENTS.md`, merge the rules instead of overwriting it.
+2. Say: `This is an existing project. Skip the interview. Rewrite STATUS.md from the current code and git log.`
+3. If you have old HANDOFF / PROGRESS / log files, move them to `docs/archive/`. Do not keep two progress files.
 
-`wrap up` is not every message. Tiny edits do not belong in STATUS.
+### Daily use
 
-The ritual is the same for a video OS, an ERP, or a shop. Only folder names change.
+- `Change checkout shipping. Touch only checkout.`
+- `New feature: export to PDF. Ask me if anything is unclear.`
+- `wrap up` / `收工` — before you leave. Not after every message; tiny edits do not belong in STATUS.
 
-### Files agents read
+In a new chat, do not paste old chats. The agent reads `STATUS.md` and picks up from Next.
+
+### What the agent will do
+
+- Read `STATUS.md` first, then only the files the task needs. No whole-repo scans.
+- Do the work itself. Split into sub-agents only when the parts are independent.
+- Ask only when missing information would change the result, or before deleting, publishing, or spending money.
+- Work on one goal at a time. `STATUS.md` has exactly one Next item.
+- Overwrite `STATUS.md`, never append. History and test evidence go in git commits and PRs.
+
+### Files
 
 | File | Role |
 |---|---|
-| `AGENTS.md` | Rules for the lead chat (`CLAUDE.md` points here) |
+| `AGENTS.md` | Rules for the agent. Codex and Cursor read it automatically |
+| `CLAUDE.md` | Points Claude Code at `AGENTS.md` |
+| `STATUS.md` | One-page progress. The only progress file |
 | `docs/SETUP.md` | First-time interview. Read only before setup |
-| `STATUS.md` | One-page progress. Next is a single item |
-| `docs/PRODUCT.md` | One-sentence product |
+| `docs/PRODUCT.md` | What the product is, who it is for, what is out of scope |
 | `CONTEXT.md` | Vocabulary |
-| `specs/INDEX.md` | Module list |
+| `specs/INDEX.md` | Module list (created during setup) |
 
-Working files are English on purpose, so any agent can follow them.
+Working files are English on purpose, so any agent can follow them. The flow is the same for a video OS, an ERP, or a shop; only module names change.
 
 ---
 
@@ -58,28 +70,55 @@ Working files are English on purpose, so any agent can follow them.
 
 ### 為什麼做這個 repo
 
-Cursor Project 可以跟同一個調度員講很久，但對話仍會忘。這個 repo 就是讓人在 Cursor 用 Project 時，**開工和收工都簡單直接**：
+每開一個新對話，coding agent 都由零開始。常見做法是貼舊對話或寫很長的交接檔，兩者都浪費 token，也令 agent 分不清哪些仍然有效。這個 template 令流程保持簡單：
 
-- 開工：講一句話。Agent 先問，再代寫地圖檔。
+- 開工：講一句話。Agent 先問你幾條問題，寫好地圖檔，然後直接開始做。
 - 做事：只講下一件。
 - 收工：說 `wrap up` 或「收工」。只改 `STATUS.md`。
 
-不要為了接回進度，自己重建目錄、貼舊對話、或掃整個 repo。
+### 開新項目
 
-### 流程
-
-1. 按 **Use this template** 開新 repo。
+1. 在 GitHub 按 **Use this template** 建立你的 repo（或直接 clone）。
 2. 用 Codex、Cursor Project 或 Claude Code 打開那個 repo。
 3. 說：`This is a new project. Interview me first.`
-4. 最多答 5 題。Agent 會寫 `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md`。
-5. Agent 會直接開始做第一件。之後只講下一件。
-6. 離開前說 `wrap up` 或「收工」─只改 `STATUS.md`。
+4. 最多答 5 題，或說「用你的建議」。
+5. Agent 會寫好 `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md`，然後開始做第一個功能。
 
-新 session 只讀 `AGENTS.md` 和 `STATUS.md`，再按 Next 需要讀相關檔案。不要貼舊對話，不要掃整個 repo。
+### 用在現有項目
 
-`STATUS.md` 是唯一的進度檔，每次覆寫、不累加。歷史及測試證據放在 git commit 和 PR。
+1. 把 `AGENTS.md`、`CLAUDE.md`、`STATUS.md` 複製到你的 repo 根目錄。如果已經有 `AGENTS.md`，把規則合併進去，不要直接覆蓋。
+2. 說：`This is an existing project. Skip the interview. Rewrite STATUS.md from the current code and git log.`
+3. 如果有舊的 HANDOFF／PROGRESS／log 檔，搬到 `docs/archive/`。不要同時保留兩個進度檔。
 
-小修不寫進 STATUS。影片 OS、ERP、電商都用同一套儀式，只換模組名。
+### 日常用法
+
+- `改結帳運費，只動 checkout。`
+- `新功能：匯出 PDF。有不清楚的先問我。`
+- `wrap up`／「收工」──離開前才說。不用每句都說，小修不寫進 STATUS。
+
+開新對話時不要貼舊對話。Agent 會讀 `STATUS.md`，從 Next 接手。
+
+### Agent 會怎樣做
+
+- 先讀 `STATUS.md`，再只讀這次任務需要的檔案，不會掃整個 repo。
+- 自己動手做。只有工作可以拆成互不相關的部分時，才分給 sub-agent。
+- 只在資料不足會影響結果，或要刪除、發布、花錢之前才問你。
+- 一次只做一個目標；`STATUS.md` 只有一個 Next。
+- `STATUS.md` 每次覆寫，不累加。歷史及測試證據放在 git commit 和 PR。
+
+### 檔案
+
+| 檔案 | 用途 |
+|---|---|
+| `AGENTS.md` | Agent 的規則，Codex 和 Cursor 會自動讀取 |
+| `CLAUDE.md` | 讓 Claude Code 讀 `AGENTS.md` |
+| `STATUS.md` | 一頁進度，唯一的進度檔 |
+| `docs/SETUP.md` | 首次訪問，只在設定前讀 |
+| `docs/PRODUCT.md` | 產品是甚麼、給誰用、不做甚麼 |
+| `CONTEXT.md` | 用語表 |
+| `specs/INDEX.md` | 模組清單（設定時建立） |
+
+規則檔刻意用英文，方便任何 agent 跟從。影片 OS、ERP、電商都用同一套流程，只換模組名。
 
 ---
 
@@ -88,28 +127,55 @@ Cursor Project 可以跟同一個調度員講很久，但對話仍會忘。這�
 
 ### 为什么做这个 repo
 
-Cursor Project 可以跟同一个调度员讲很久，但对话仍会忘。这个 repo 就是让人在 Cursor 用 Project 时，**开工和收工都简单直接**：
+每开一个新对话，coding agent 都从零开始。常见做法是粘贴旧对话或写很长的交接文件，两者都浪费 token，也让 agent 分不清哪些仍然有效。这个 template 让流程保持简单：
 
-- 开工：讲一句话。Agent 先问，再代写地图文件。
+- 开工：讲一句话。Agent 先问你几个问题，写好地图文件，然后直接开始做。
 - 做事：只讲下一件。
 - 收工：说 `wrap up` 或「收工」。只改 `STATUS.md`。
 
-不要为了接回进度，自己重建目录、粘贴旧对话、或扫整个仓库。
+### 开新项目
 
-### 流程
-
-1. 点 **Use this template** 开新仓库。
+1. 在 GitHub 点 **Use this template** 创建你的仓库（或直接 clone）。
 2. 用 Codex、Cursor Project 或 Claude Code 打开那个仓库。
 3. 说：`This is a new project. Interview me first.`
-4. 最多答 5 题。Agent 会写 `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md`。
-5. Agent 会直接开始做第一件。之后只讲下一件。
-6. 离开前说 `wrap up` 或「收工」—只改 `STATUS.md`。
+4. 最多答 5 题，或说「用你的建议」。
+5. Agent 会写好 `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md`，然后开始做第一个功能。
 
-新 session 只读 `AGENTS.md` 和 `STATUS.md`，再按 Next 需要读相关文件。不要粘贴旧对话，不要扫整个仓库。
+### 用在现有项目
 
-`STATUS.md` 是唯一的进度文件，每次覆写、不追加。历史及测试证据放在 git commit 和 PR。
+1. 把 `AGENTS.md`、`CLAUDE.md`、`STATUS.md` 复制到你的仓库根目录。如果已经有 `AGENTS.md`，把规则合并进去，不要直接覆盖。
+2. 说：`This is an existing project. Skip the interview. Rewrite STATUS.md from the current code and git log.`
+3. 如果有旧的 HANDOFF／PROGRESS／log 文件，移到 `docs/archive/`。不要同时保留两个进度文件。
 
-小改不写进 STATUS。影片 OS、ERP、电商都用同一套仪式，只换模块名。
+### 日常用法
+
+- `改结账运费，只动 checkout。`
+- `新功能：导出 PDF。有不清楚的先问我。`
+- `wrap up`／「收工」——离开前才说。不用每句都说，小改不写进 STATUS。
+
+开新对话时不要粘贴旧对话。Agent 会读 `STATUS.md`，从 Next 接手。
+
+### Agent 会怎样做
+
+- 先读 `STATUS.md`，再只读这次任务需要的文件，不会扫整个仓库。
+- 自己动手做。只有工作可以拆成互不相关的部分时，才分给 sub-agent。
+- 只在信息不足会影响结果，或要删除、发布、花钱之前才问你。
+- 一次只做一个目标；`STATUS.md` 只有一个 Next。
+- `STATUS.md` 每次覆写，不追加。历史及测试证据放在 git commit 和 PR。
+
+### 文件
+
+| 文件 | 用途 |
+|---|---|
+| `AGENTS.md` | Agent 的规则，Codex 和 Cursor 会自动读取 |
+| `CLAUDE.md` | 让 Claude Code 读 `AGENTS.md` |
+| `STATUS.md` | 一页进度，唯一的进度文件 |
+| `docs/SETUP.md` | 首次访谈，只在设置前读 |
+| `docs/PRODUCT.md` | 产品是什么、给谁用、不做什么 |
+| `CONTEXT.md` | 术语表 |
+| `specs/INDEX.md` | 模块清单（设置时创建） |
+
+规则文件刻意用英文，方便任何 agent 遵循。影片 OS、ERP、电商都用同一套流程，只换模块名。
 
 ---
 
@@ -118,28 +184,55 @@ Cursor Project 可以跟同一个调度员讲很久，但对话仍会忘。这�
 
 ### なぜこの repo があるか
 
-Cursor Project では同じコーディネーターと長く話せるが、会話自体は忘れる。この repo は、Cursor の Project で**始めると終わらせる手順を短く直接**にするためです。
+コーディングエージェントは新しいチャットのたびにゼロから始まる。古い会話を貼ったり長い引き継ぎファイルを書いたりすると、token を浪費し、どれがまだ有効かエージェントが迷う。この template は流れを単純に保つ：
 
-- 開始：一文言う。エージェントが質問し、地図ファイルを書く。
+- 開始：一文言う。エージェントが質問し、地図ファイルを書いて、そのまま作り始める。
 - 作業：次の 1 件だけ話す。
 - 終了：`wrap up` または「收工」。`STATUS.md` だけ更新する。
 
-進捗を接ぐために、目録を作り直したり、古い会話を貼ったり、リポジトリ全体を走査したりしない。
+### 新しいプロジェクトを始める
 
-### 流れ
-
-1. **Use this template** で新しいリポジトリを作る。
+1. GitHub で **Use this template** を押してリポジトリを作る（または clone する）。
 2. その repo を Codex、Cursor Project、または Claude Code で開く。
 3. `This is a new project. Interview me first.` と言う。
-4. 最大 5 問に答える。エージェントが `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md` を書く。
-5. エージェントが最初の機能をそのまま始める。以降は次の 1 件だけ話す。
-6. 離れる前に `wrap up` または「收工」 — `STATUS.md` だけ更新する。
+4. 最大 5 問に答える。または「おすすめで」と言う。
+5. エージェントが `docs/PRODUCT.md`、`CONTEXT.md`、`specs/INDEX.md`、`STATUS.md` を書き、最初の機能を始める。
 
-新しい session は `AGENTS.md` と `STATUS.md` を読み、Next に必要なものだけ読む。古い会話は貼らない。リポジトリ全体を走査しない。
+### 既存のプロジェクトに入れる
 
-`STATUS.md` が唯一の進捗ファイル。毎回上書きし、追記しない。履歴とテスト証拠は git commit と PR に残す。
+1. `AGENTS.md`、`CLAUDE.md`、`STATUS.md` をリポジトリのルートにコピーする。既に `AGENTS.md` がある場合は上書きせず、ルールを統合する。
+2. `This is an existing project. Skip the interview. Rewrite STATUS.md from the current code and git log.` と言う。
+3. 古い HANDOFF／PROGRESS／ログファイルがあれば `docs/archive/` に移す。進捗ファイルを 2 つ残さない。
 
-小さな修正は STATUS に書かない。動画 OS、ERP、EC も同じ流れで、モジュール名だけ変わる。
+### 毎日の使い方
+
+- `チェックアウトの送料を変更。checkout だけ触って。`
+- `新機能：PDF 書き出し。不明点があれば先に聞いて。`
+- `wrap up`／「收工」— 離れる前だけ。毎回は不要。小さな修正は STATUS に書かない。
+
+新しいチャットでは古い会話を貼らない。エージェントが `STATUS.md` を読み、Next から続ける。
+
+### エージェントの動き方
+
+- まず `STATUS.md` を読み、その作業に必要なファイルだけ読む。リポジトリ全体は走査しない。
+- 自分で作業する。互いに独立した部分がある時だけ sub-agent に分ける。
+- 情報不足が結果に影響する時、または削除・公開・支払いの前だけ質問する。
+- 一度に一つの目標だけ。`STATUS.md` の Next は常に 1 件。
+- `STATUS.md` は毎回上書きし、追記しない。履歴とテスト証拠は git commit と PR に残す。
+
+### ファイル
+
+| ファイル | 役割 |
+|---|---|
+| `AGENTS.md` | エージェントのルール。Codex と Cursor は自動で読む |
+| `CLAUDE.md` | Claude Code に `AGENTS.md` を読ませる |
+| `STATUS.md` | 1 ページの進捗。唯一の進捗ファイル |
+| `docs/SETUP.md` | 初回インタビュー。設定前だけ読む |
+| `docs/PRODUCT.md` | 何を作るか、誰のためか、何をしないか |
+| `CONTEXT.md` | 用語集 |
+| `specs/INDEX.md` | モジュール一覧（設定時に作成） |
+
+ルールファイルはどのエージェントでも従えるよう、あえて英語。動画 OS、ERP、EC も同じ流れで、モジュール名だけ変わる。
 
 ---
 
